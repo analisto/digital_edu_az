@@ -1,0 +1,33 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Book Collection</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body>
+    <h1>My Book Collection</h1>
+
+    <ul>
+        <% books.forEach(book=> { %>
+            <li>
+                <strong>
+                    <%= book.book_name %>
+                </strong> by <%= book.note_auth_name %>
+                    <p>Note: <%= book.note %>
+                    </p>
+                    <p>Note Date: <%= book.note_date.toISOString().slice(0, 10) %>
+                    </p>
+            </li>
+            <% }); %>
+    </ul>
+
+    <!-- Add more HTML content and EJS logic as needed -->
+</body>
+
+</html>
