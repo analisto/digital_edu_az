@@ -4,10 +4,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Book Collection</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <!-- ... Your existing head content ... -->
 </head>
 
 <body>
@@ -27,7 +24,21 @@
             <% }); %>
     </ul>
 
-    <!-- Add more HTML content and EJS logic as needed -->
+    <h2>Add a New Book Note</h2>
+    <form action="/add" method="post">
+        <label for="bookName">Book Name:</label>
+        <input type="text" id="bookName" name="bookName" required>
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required>
+
+        <label for="note">Note:</label>
+        <textarea id="note" name="note" required></textarea>
+
+        <button type="submit">Add Note</button>
+    </form>
+
+    <!-- ... Your existing body content ... -->
 </body>
 
 </html>
