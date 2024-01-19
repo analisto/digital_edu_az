@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const pg = require('pg');
 const axios = require('axios');
-
+const path = require('path'); // Added to handle static files
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -31,6 +31,9 @@ const connectDB = async () => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Routes
 app.get('/', async (req, res) => {
   try {
@@ -38,9 +41,9 @@ app.get('/', async (req, res) => {
     const result = await db.query('SELECT * FROM book_note');
     const books = result.rows;
 
-    // Fetch book covers from the Open Library Covers API
+    // Fetch book covers from the Open Library Covers API (replace with your actual ISBN field)
     const bookCoverPromises = books.map(async (book) => {
-      const isbn = book.isbn; // Assuming you have an ISBN in your database
+      const isbn = book.isbn; // Replace 'isbn' with your actual ISBN field
       const coverResponse = await axios.get(`https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`);
       return { ...book, coverUrl: coverResponse.data };
     });
@@ -77,4 +80,3 @@ connectDB().then(() => {
     });
   });
 });
-

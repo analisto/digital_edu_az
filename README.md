@@ -1,87 +1,85 @@
-# bookNotes
-Udemy Angela Yu Capstone Project
 
+```markdown
+# Book Notes App
 
-Instructions
-What are Capstone Projects?
+## Overview
 
-Overview
-I read a lot of books but after I finish reading them I often don't remember all the most salient parts of the book. So I started taking notes. This capstone project is built on this idea. My friend Derek Sivers has this fantastic website where he has all the non-fiction books he has read, his notes, his ratings and when he read them. The books are sortable by rating, recency and title. It's a such cool idea for a project so I'm including it as a capstone here in this course.
+This is a web application for managing book notes. The app allows you to view and organize your book collection, including book details and notes.
 
-Objectives
-Revise how to integrate public APIs into web projects.
+## Project Structure
 
-Gain more experience using Express/Node.js for server-side programming.
+```
+├── config
+├── node_modules
+├── public
+│   ├── assets
+│   │   └── icons
+│   └── styles
+├── src
+│   ├── controllers
+│   ├── middlewares
+│   ├── models
+│   ├── routes
+│   └── services
+├── tests
+└── views
+    └── partials
+```
 
-Demonstrate ability to Create Read Update and Delete data in a PostgreSQL Database to persist data.
+- **config**: Configuration files.
+- **node_modules**: Node.js modules and dependencies.
+- **public**: Static assets like stylesheets and icons.
+- **src**: Source code for the application.
+  - **controllers**: Controllers for handling routes.
+  - **middlewares**: Middleware functions.
+  - **models**: Database models.
+  - **routes**: Route definitions.
+  - **services**: Additional services or utilities.
+- **tests**: Test files.
+- **views**: EJS views and partials.
 
-Example Ideas
-Use the Open Library Covers API to fetch book covers.
+## Installation
 
-Create a database to store books you have read.
+1. Clone the repository:
 
-Have a way to add new data about books, update previous reviews and delete entries.
+   ```bash
+   git clone https://github.com/ismat-samadov/book-notes-app.git
+   ```
 
-Display this information from your database in a website like https://sive.rs/book
+2. Install dependencies:
 
-Be able to sort your book entries by rating and recency.
+   ```bash
+   npm install
+   ```
 
-Requirements
-1. Database Persistance
-Persist data using a PostgreSQL database.
+3. Set up your PostgreSQL database and update the connection details in `index.js`.
 
-Use CRUD methods to manipulate data in the database.
+4. Run the application:
 
-2. Project Planning
-Think through your project, researching the API documentation, project features, what data you will store, and how it will be used in your web application.
+   ```bash
+   npm start
+   ```
 
-Draw a database diagram on draw.io and plan out any relationships.
+5. Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-Think through the PostgreSQL command you will need to write to create the schema for your database.
+## Usage
 
-3. Project Setup
-Set up a new Node.js project using Express.js.
+- Add books to your collection with notes.
+- View and organize your book collection.
+- Customize the app based on your needs.
 
-Include pg for working with your localhost PostgreSQL database.
+## Dependencies
 
-Include EJS for templating.
+- Express.js
+- PostgreSQL
+- Axios
 
-Create a frontend in HTML CSS JS.
+## Contributing
 
-Ensure that the project has a structured directory and file organization.
+Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
 
-4. API Integration
-Implement at least a GET endpoint to interact with your chosen API.
+## License
 
-Use Axios to send HTTP requests to the API and handle responses.
+<!-- This project is licensed under the [MIT License](LICENSE). -->
+```
 
-5. Data Presentation
-Design the application to present the book covers from the API and the data in your database a in a user-friendly way.
-
-Use appropriate HTML, CSS, and a templating engine like EJS.
-
-Think about how you would allow the user to sort the data from the database.
-
-6. Error Handling
-Ensure that error handling is in place for both your application and any API requests. You can console log any errors, but you can also give users any user-relevant errors.
-
-7. Documentation
-Include comments throughout your code to explain your logic.
-
-8. Code Sharing
-Use what you have learnt about GitHub to commit and push your project to GitHub so that you can share it with other students in the Q&A area, I'd love to see what you've build too! You can tweet at me @yu_angela
-
-Include a Readme.md file that explains how to start your server, what commands are needed to run your code. e.g. npm i  and then nodemon index.js
-
-Recommended Resources
-Express.js: Getting Started Guide
-
-Node.js: Documentation
-
-Axios: Documentation
-
-Postgres: Documentation
-
-pg: Documentation
-
-Open Library Covers API:  https://openlibrary.org/dev/docs/api/covers
