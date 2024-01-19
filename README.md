@@ -1,4 +1,4 @@
-<!-- # bookNotes
+# bookNotes
 Udemy Angela Yu Capstone Project
 
 
@@ -84,4 +84,4 @@ Postgres: Documentation
 
 pg: Documentation
 
-Open Library Covers API:  https://openlibrary.org/dev/docs/api/covers -->
+Open Library Covers API:  https://openlibrary.org/dev/docs/api/covers
