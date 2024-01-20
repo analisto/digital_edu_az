@@ -1,6 +1,7 @@
 // src/controllers/bookController.js
 
 const db = require('../models/db');
+const { handleDatabaseError } = require('../utils/errorHandlers');
 
 const bookController = {
   // Controller to get all books
@@ -10,8 +11,7 @@ const bookController = {
       const books = result.rows;
       res.render('books', { books });
     } catch (err) {
-      console.error('Error querying the database:', err.message);
-      res.status(500).send('Internal Server Error');
+      handleDatabaseError(err, res);
     }
   },
 
@@ -23,12 +23,72 @@ const bookController = {
       const book = result.rows[0];
       res.render('bookDetail', { book });
     } catch (err) {
-      console.error('Error querying the database:', err.message);
-      res.status(500).send('Internal Server Error');
+      handleDatabaseError(err, res);
     }
   },
 
+  // Controller to handle the update operation
+updateBook: async function(req, res) {
+  const { id } = req.params;
+  const { bookName, author, note } = req.body;
+  try {
+    await db.query(
+      'UPDATE book_note SET book_name = $1, note_auth_name = $2, note = $3 WHERE id = $4',
+      [bookName, author, note, id]
+    );
+    res.redirect('/');
+  } catch (err) {
+    handleDatabaseError(err, res);
+  }
+  },
+
+  // Controller to handle the delete operation
+deleteBook: async (req, res) => {
+  const { id } = req.params;
+  try {
+    await db.query('DELETE FROM book_note WHERE id = $1', [id]);
+    res.redirect('/');
+  } catch (err) {
+    handleDatabaseError(err, res);
+  }
+},
+
+  
+
+
+// Controller to render the edit form for a book
+renderEditForm: async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await db.query('SELECT * FROM book_note WHERE id = $1', [id]);
+    const book = result.rows[0];
+    res.render('editForm', { book });
+  } catch (err) {
+    handleDatabaseError(err, res);
+  }
+},
+
+// Controller to handle the update operation
+updateBook: async (req, res) => {
+  const { id } = req.params;
+  const { bookName, author, note } = req.body;
+  try {
+    await db.query(
+      'UPDATE book_note SET book_name = $1, note_auth_name = $2, note = $3 WHERE id = $4',
+      [bookName, author, note, id]
+    );
+    res.redirect('/');
+  } catch (err) {
+    handleDatabaseError(err, res);
+  }
+},
+
+
   // Other controllers for creating, updating, and deleting books can be added here
 };
+
+
+
+
 
 module.exports = bookController;
