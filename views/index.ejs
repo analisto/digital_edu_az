@@ -10,19 +10,32 @@
 <body>
     <h1>My Book Collection</h1>
 
-    <ul>
-        <% books.forEach(book=> { %>
-            <li>
-                <strong>
-                    <%= book.book_name %>
-                </strong> by <%= book.note_auth_name %>
-                    <p>Note: <%= book.note %>
-                    </p>
-                    <p>Note Date: <%= book.note_date.toISOString().slice(0, 10) %>
-                    </p>
-            </li>
-            <% }); %>
-    </ul>
+<ul>
+    <% books.forEach(book=> { %>
+        <li>
+            <strong>
+                <%= book.book_name %>
+            </strong> by <%= book.note_auth_name %>
+                <p>Note: <%= book.note %>
+                </p>
+                <p>Note Date: <%= book.note_date.toISOString().slice(0, 10) %>
+                </p>
+
+                <!-- Update the form for editing a book -->
+                <form action="/edit/<%= book.id %>" method="get">
+                    <button type="submit">Edit</button>
+                </form>
+
+                <!-- Update the form for deleting a book -->
+                <form action="/delete/<%= book.id %>" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+        </li>
+        <% }); %>
+</ul>
+    
+
+
 
     <h2>Add a New Book Note</h2>
     <form action="/add" method="post">

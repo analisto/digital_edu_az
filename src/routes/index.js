@@ -4,9 +4,6 @@ const router = express.Router();
 const db = require('../models/db');
 const { handleDatabaseError } = require('../utils/errorHandlers');
 const bookController = require('../controllers/bookController');
-router.get('/book/:id', bookController.getBookById);
-router.get('/book/:id', bookController.getBookById);
-
 
 // Home route
 router.get('/', async (req, res) => {
@@ -19,37 +16,39 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Add route
-router.post('/add', async (req, res) => {
+// Handle the update request (change method from GET to POST)
+router.post('/edit/:id', async (req, res) => {
+  const { id } = req.params;
+  const { bookName, author, note } = req.body;
+
   try {
-    const { bookName, author, note } = req.body;
-
-    // Input validation (you can use a validation library or custom validation logic)
-    if (!bookName || !author || !note) {
-      return res.status(400).json({ error: 'Invalid input. All fields are required.' });
-    }
-
     await db.query(
-      'INSERT INTO book_note (book_name, note, note_auth_name) VALUES ($1, $2, $3)',
-      [bookName, note, author]
+      'UPDATE book_note SET book_name = $1, note_auth_name = $2, note = $3 WHERE id = $4',
+      [bookName, author, note, id]
     );
+
     res.redirect('/');
   } catch (err) {
     handleDatabaseError(err, res);
   }
 });
 
+// Add route for creating a new book
+router.post('/add', bookController.addBook);
 
-// Route to render the edit form
-router.get('/edit/:id', bookController.renderEditForm);
-
-// Route to handle the update operation
-router.post('/edit/:id', bookController.updateBook);
-
-// Route to handle the delete operation
+// Handle the delete request (GET)
 router.get('/delete/:id', bookController.deleteBook);
 
+// Handle the delete request (POST)
+router.post('/delete/:id', bookController.deleteBook);
 
+// Render the form for updating a book
+router.get('/edit/:id', bookController.renderEditForm);
 
+// Handle the update request
+router.post('/edit/:id', bookController.updateBook);
+
+// Render the form for creating a new book
+router.get('/add', bookController.renderAddBookForm);
 
 module.exports = router;
