@@ -52,10 +52,6 @@ deleteBook: async (req, res) => {
     handleDatabaseError(err, res);
   }
 },
-
-  
-
-
 // Controller to render the edit form for a book
 renderEditForm: async (req, res) => {
   const { id } = req.params;
@@ -67,7 +63,6 @@ renderEditForm: async (req, res) => {
     handleDatabaseError(err, res);
   }
 },
-
 // Controller to handle the update operation
 updateBook: async (req, res) => {
   const { id } = req.params;
@@ -83,12 +78,6 @@ updateBook: async (req, res) => {
   }
 },
 
-
-  // Other controllers for creating, updating, and deleting books can be added here
 };
-
-
-
-
 
 module.exports = bookController;

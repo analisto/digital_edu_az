@@ -3,9 +3,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models/db');
 const { handleDatabaseError } = require('../utils/errorHandlers');
-router.get('/book/:id', bookController.getBookById);
 const bookController = require('../controllers/bookController');
-router.setMaxListeners(15);
+router.get('/book/:id', bookController.getBookById);
 router.get('/book/:id', bookController.getBookById);
 
 
