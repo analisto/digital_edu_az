@@ -1,7 +1,7 @@
 {
   "name": "booknotes",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a web application for managing book notes. The app allows you to view and organize your book collection, including book details and notes.",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -51,6 +51,7 @@
     "mime-types": "^2.1.35",
     "ms": "^2.0.0",
     "negotiator": "^0.6.3",
+    "node-fetch": "^3.3.2",
     "object-inspect": "^1.13.1",
     "on-finished": "^2.4.1",
     "packet-reader": "^1.0.0",

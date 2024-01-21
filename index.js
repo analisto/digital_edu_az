@@ -36,7 +36,6 @@ connectDB().then(() => {
 
   process.on('SIGINT', () => {
     console.log('Closing database connection');
-    // No need to manually end the connection as the pool handles it
     server.close(() => {
       console.log('Server closed');
       process.exit(0);
